@@ -89,3 +89,5 @@ typings/
 
 # Vscode local files
 /.vscode
+
+**/.DS_Store
