@@ -1,16 +1,15 @@
 import { Arg, Query, Resolver } from "type-graphql";
 import { baseUrl } from "../../constants";
 import { Berry, BerryFirmness, BerryFlavor } from "./types";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
-import { ApiError } from "../../interfaces";
 import { getApiError } from "../../helpers";
 
 @Resolver()
 export class BerryResolver {
-  berryUrl = "berry";
-  firmnessUrl = "berry-firmness";
-  flavorUrl = "berry-flavor";
+  berryUrl = "berry/";
+  firmnessUrl = "berry-firmness/";
+  flavorUrl = "berry-flavor/";
 
   @Query(returns => Berry)
   async getBerry(@Arg("nameId") input: string): Promise<Berry> {
@@ -39,7 +38,8 @@ export class BerryResolver {
   ): Promise<NamedAPIResourceList> {
     console.log(`🚀 ~ file: resolver.ts:40 ~ BerryResolver ~ input:`, input);
     try {
-      let url = `${baseUrl}${this.berryUrl}?limit=${input.limit}&offset=${input.offset}`;
+      const { limit, offset } = input;
+      let url = `${baseUrl}${this.berryUrl}?limit=${limit}&offset=${offset}`;
       console.log(
         `🚀 ~ file: resolver.ts:44 ~ BerryResolver ~ getAllBerries ~ url:`,
         url
@@ -59,6 +59,7 @@ export class BerryResolver {
       `🚀 ~ file: resolver.ts:59 ~ BerryResolver ~ getBerryFirmness ~ input:`,
       input
     );
+
     try {
       const url = `${baseUrl}${this.firmnessUrl}/${input}`;
       console.log(
@@ -79,8 +80,10 @@ export class BerryResolver {
     @Arg("pagination") input: PaginationInput
   ): Promise<NamedAPIResourceList> {
     console.log(`🚀 ~ file: resolver.ts:78 ~ BerryResolver ~ input:`, input);
+
     try {
-      let url = `${baseUrl}${this.firmnessUrl}?limit=${input.limit}&offset=${input.offset}`;
+      const { limit, offset } = input;
+      let url = `${baseUrl}${this.firmnessUrl}?limit=${limit}&offset=${offset}`;
       console.log(`🚀 ~ file: resolver.ts:81 ~ BerryResolver ~ url:`, url);
       const response = await axios.get(url);
       return response.data;
@@ -120,8 +123,10 @@ export class BerryResolver {
       `🚀 ~ file: resolver.ts:117 ~ BerryResolver ~ getAllBerryFlavors ~ input:`,
       input
     );
+
     try {
-      const url = `${baseUrl}${this.flavorUrl}?limit=${input.limit}&${input.offset}`;
+      const { limit, offset } = input;
+      const url = `${baseUrl}${this.flavorUrl}?limit=${limit}&${offset}`;
       const response = await axios.get(url);
       return response.data;
     } catch (e) {
