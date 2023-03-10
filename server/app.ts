@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-import { graphqlRouter } from "../server/routes";
+import { graphqlRouter } from "./routes";
 import morgan from "morgan";
 
 export const app = express();
