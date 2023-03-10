@@ -14,8 +14,8 @@ export class NamedAPIResourceList {
   count: number;
   @Field(type => String)
   next: string;
-  @Field(type => String)
-  previous: string;
+  @Field(type => String, { nullable: true })
+  previous: string | null;
   @Field(type => [NamedAPIResource])
   results: [NamedAPIResource];
 }
