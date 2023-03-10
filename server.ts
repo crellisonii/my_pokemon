@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import { ApolloServer } from "apollo-server-express";
-import { BerryResolver } from "./server/modules/berries/resolver";
+import { BerryResolver } from "./server/modules/berries";
 import { app } from "./server/app";
 import { buildSchema } from "type-graphql";
 
@@ -10,6 +10,7 @@ const port = 4000;
 async function bootstrap() {
   const schema = await buildSchema({
     resolvers: [BerryResolver],
+    validate: { forbidUnknownValues: false },
   });
 
   const server = await new ApolloServer({
