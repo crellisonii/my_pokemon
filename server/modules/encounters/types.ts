@@ -8,45 +8,45 @@ import { Name } from "../shared";
 
 @ObjectType()
 export class EncounterMethod {
-  @Field(type => Int)
-  id: number;
+  @Field(type => Int, { nullable: true })
+  id: number | null;
 
-  @Field(type => String)
-  name: string;
+  @Field(type => String, { nullable: true })
+  name: string | null;
 
-  @Field(type => [Name])
-  names: [Name];
+  @Field(type => [Name], { nullable: true })
+  names: [Name] | null;
 
-  @Field(type => Int)
-  order: number;
+  @Field(type => Int, { nullable: true })
+  order: number | null;
 }
 
 @ObjectType()
 export class EncounterCondition {
-  @Field(type => Int)
-  id: number;
+  @Field(type => Int, { nullable: true })
+  id: number | null;
 
-  @Field(type => String)
-  name: string;
+  @Field(type => String, { nullable: true })
+  name: string | null;
 
-  @Field(type => [Name])
-  names: [Name];
+  @Field(type => [Name], { nullable: true })
+  names: [Name] | null;
 
-  @Field(type => [EncounterConditionValueResource])
-  values: [EncounterConditionValueResource];
+  @Field(type => [EncounterConditionValueResource], { nullable: true })
+  values: [EncounterConditionValueResource] | null;
 }
 
 @ObjectType()
 export class EncounterConditionValue {
-  @Field(type => EncounterConditionResource)
-  condition: EncounterConditionResource;
+  @Field(type => EncounterConditionResource, { nullable: true })
+  condition: EncounterConditionResource | null;
 
-  @Field(type => Int)
-  id: number;
+  @Field(type => Int, { nullable: true })
+  id: number | null;
 
-  @Field(type => String)
-  name: string;
+  @Field(type => String, { nullable: true })
+  name: string | null;
 
-  @Field(type => [Name])
-  names: [Name];
+  @Field(type => [Name], { nullable: true })
+  names: [Name] | null;
 }

@@ -12,90 +12,90 @@ import { Name } from "../shared";
 
 @ObjectType()
 export class Berry {
-  @Field(type => BerryFirmnessResource)
-  firmness: BerryFirmnessResource;
+  @Field(type => BerryFirmnessResource, { nullable: true })
+  firmness: BerryFirmnessResource | null;
 
-  @Field(type => [BerryFlavorMap])
-  flavors: [BerryFlavorMap];
+  @Field(type => [BerryFlavorMap], { nullable: true })
+  flavors: [BerryFlavorMap] | null;
 
-  @Field(type => Int)
-  growth_time: number;
+  @Field(type => Int, { nullable: true })
+  growth_time: number | null;
 
-  @Field(type => Int)
-  id: number;
+  @Field(type => Int, { nullable: true })
+  id: number | null;
 
-  @Field(type => ItemResource)
-  item: ItemResource;
+  @Field(type => ItemResource, { nullable: true })
+  item: ItemResource | null;
 
-  @Field(type => Int)
-  max_harvest: number;
+  @Field(type => Int, { nullable: true })
+  max_harvest: number | null;
 
-  @Field(type => String)
-  name: string;
+  @Field(type => String, { nullable: true })
+  name: string | null;
 
-  @Field(type => Int)
-  natural_gift_power: number;
+  @Field(type => Int, { nullable: true })
+  natural_gift_power: number | null;
 
-  @Field(type => TypeResource)
-  natural_gift_type: TypeResource;
+  @Field(type => TypeResource, { nullable: true })
+  natural_gift_type: TypeResource | null;
 
-  @Field(type => Int)
-  size: number;
+  @Field(type => Int, { nullable: true })
+  size: number | null;
 
-  @Field(type => Int)
-  smoothness: number;
+  @Field(type => Int, { nullable: true })
+  smoothness: number | null;
 
-  @Field(type => Int)
-  soil_dryness: number;
+  @Field(type => Int, { nullable: true })
+  soil_dryness: number | null;
 }
 
 @ObjectType()
 export class BerryFirmness {
-  @Field(type => [BerryFirmnessResource])
-  berries: [BerryFirmnessResource];
+  @Field(type => [BerryFirmnessResource], { nullable: true })
+  berries: [BerryFirmnessResource] | null;
 
-  @Field(type => Int)
-  id: number;
+  @Field(type => Int, { nullable: true })
+  id: number | null;
 
-  @Field(type => String)
-  name: string;
+  @Field(type => String, { nullable: true })
+  name: string | null;
 
-  @Field(type => [Name])
-  names: [Name];
+  @Field(type => [Name], { nullable: true })
+  names: [Name] | null;
 }
 
 @ObjectType()
 export class BerryFlavor {
-  @Field(type => [FlavorBerryMap])
-  berries: [FlavorBerryMap];
+  @Field(type => [FlavorBerryMap], { nullable: true })
+  berries: [FlavorBerryMap] | null;
 
-  @Field(type => ContestTypeResource)
-  contest_type: ContestTypeResource;
+  @Field(type => ContestTypeResource, { nullable: true })
+  contest_type: ContestTypeResource | null;
 
-  @Field(type => Int)
-  id: number;
+  @Field(type => Int, { nullable: true })
+  id: number | null;
 
-  @Field(type => String)
-  name: string;
+  @Field(type => String, { nullable: true })
+  name: string | null;
 
-  @Field(type => [Name])
-  names: [Name];
+  @Field(type => [Name], { nullable: true })
+  names: [Name] | null;
 }
 
 @ObjectType()
 export class BerryFlavorMap {
-  @Field(type => BerryFlavorResource)
-  flavor: BerryFlavorResource;
+  @Field(type => BerryFlavorResource, { nullable: true })
+  flavor: BerryFlavorResource | null;
 
-  @Field(type => Int)
-  potency: number;
+  @Field(type => Int, { nullable: true })
+  potency: number | null;
 }
 
 @ObjectType()
 export class FlavorBerryMap {
-  @Field(type => BerryResource)
-  berry: BerryResource;
+  @Field(type => BerryResource, { nullable: true })
+  berry: BerryResource | null;
 
-  @Field(type => Int)
-  potency: number;
+  @Field(type => Int, { nullable: true })
+  potency: number | null;
 }

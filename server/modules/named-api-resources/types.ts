@@ -5,8 +5,8 @@ export class NamedAPIResource {
   @Field(type => String, { nullable: true })
   name: string | null;
 
-  @Field(type => String)
-  url: string;
+  @Field(type => String, { nullable: true })
+  url: string | null;
 }
 
 @ObjectType()

@@ -8,60 +8,60 @@ import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
 export class ContestEffect {
-  @Field(type => Int)
-  appeal: number;
+  @Field(type => Int, { nullable: true })
+  appeal: number | null;
 
-  @Field(type => [Effect])
-  effect_entries: [Effect];
+  @Field(type => [Effect], { nullable: true })
+  effect_entries: [Effect] | null;
 
-  @Field(type => [FlavorText])
-  flavor_text_entries: [FlavorText];
+  @Field(type => [FlavorText], { nullable: true })
+  flavor_text_entries: [FlavorText] | null;
 
-  @Field(type => Int)
-  id: number;
+  @Field(type => Int, { nullable: true })
+  id: number | null;
 
-  @Field(type => Int)
-  jam: number;
+  @Field(type => Int, { nullable: true })
+  jam: number | null;
 }
 
 @ObjectType()
 export class ContestName {
-  @Field(type => String)
-  color: string;
+  @Field(type => String, { nullable: true })
+  color: string | null;
 
-  @Field(type => LanguageResource)
-  language: LanguageResource;
+  @Field(type => LanguageResource, { nullable: true })
+  language: LanguageResource | null;
 
-  @Field(type => String)
-  name: string;
+  @Field(type => String, { nullable: true })
+  name: string | null;
 }
 
 @ObjectType()
 export class ContestType {
-  @Field(type => BerryFlavorResource)
-  berry_flavor: BerryFlavorResource;
+  @Field(type => BerryFlavorResource, { nullable: true })
+  berry_flavor: BerryFlavorResource | null;
 
-  @Field(type => Int)
-  id: number;
+  @Field(type => Int, { nullable: true })
+  id: number | null;
 
-  @Field(type => String)
-  name: string;
+  @Field(type => String, { nullable: true })
+  name: string | null;
 
-  @Field(type => [ContestName])
-  names: [ContestName];
+  @Field(type => [ContestName], { nullable: true })
+  names: [ContestName] | null;
 }
 
 @ObjectType()
 export class SuperContestEffect {
-  @Field(type => Int)
-  appeal: number;
+  @Field(type => Int, { nullable: true })
+  appeal: number | null;
 
-  @Field(type => [FlavorText])
-  flavor_text_entries: [FlavorText];
+  @Field(type => [FlavorText], { nullable: true })
+  flavor_text_entries: [FlavorText] | null;
 
-  @Field(type => Int)
-  id: number;
+  @Field(type => Int, { nullable: true })
+  id: number | null;
 
-  @Field(type => [MoveResource])
-  moves: [MoveResource];
+  @Field(type => [MoveResource], { nullable: true })
+  moves: [MoveResource] | null;
 }
