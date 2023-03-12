@@ -1,5 +1,10 @@
+import {
+  EncounterConditionResource,
+  EncounterConditionValueResource,
+} from "../named-api-resources";
 import { Field, Int, ObjectType } from "type-graphql";
-import { Name, NamedAPIResource } from "../shared";
+
+import { Name } from "../shared";
 
 @ObjectType()
 export class EncounterMethod {
@@ -27,14 +32,14 @@ export class EncounterCondition {
   @Field(type => [Name])
   names: [Name];
 
-  @Field(type => [NamedAPIResource])
-  values: [NamedAPIResource];
+  @Field(type => [EncounterConditionValueResource])
+  values: [EncounterConditionValueResource];
 }
 
 @ObjectType()
 export class EncounterConditionValue {
-  @Field(type => NamedAPIResource)
-  condition: NamedAPIResource;
+  @Field(type => EncounterConditionResource)
+  condition: EncounterConditionResource;
 
   @Field(type => Int)
   id: number;

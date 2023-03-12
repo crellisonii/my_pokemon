@@ -1,10 +1,19 @@
+import {
+  BerryFirmnessResource,
+  BerryFlavorResource,
+  BerryResource,
+  ContestTypeResource,
+  ItemResource,
+  TypeResource,
+} from "../named-api-resources";
 import { Field, Int, ObjectType } from "type-graphql";
-import { Name, NamedAPIResource } from "../shared";
+
+import { Name } from "../shared";
 
 @ObjectType()
 export class Berry {
-  @Field(type => NamedAPIResource)
-  firmness: NamedAPIResource;
+  @Field(type => BerryFirmnessResource)
+  firmness: BerryFirmnessResource;
 
   @Field(type => [BerryFlavorMap])
   flavors: [BerryFlavorMap];
@@ -15,8 +24,8 @@ export class Berry {
   @Field(type => Int)
   id: number;
 
-  @Field(type => NamedAPIResource)
-  item: NamedAPIResource;
+  @Field(type => ItemResource)
+  item: ItemResource;
 
   @Field(type => Int)
   max_harvest: number;
@@ -27,8 +36,8 @@ export class Berry {
   @Field(type => Int)
   natural_gift_power: number;
 
-  @Field(type => NamedAPIResource)
-  natural_gift_type: NamedAPIResource;
+  @Field(type => TypeResource)
+  natural_gift_type: TypeResource;
 
   @Field(type => Int)
   size: number;
@@ -42,8 +51,8 @@ export class Berry {
 
 @ObjectType()
 export class BerryFirmness {
-  @Field(type => [NamedAPIResource])
-  berries: [NamedAPIResource];
+  @Field(type => [BerryFirmnessResource])
+  berries: [BerryFirmnessResource];
 
   @Field(type => Int)
   id: number;
@@ -60,8 +69,8 @@ export class BerryFlavor {
   @Field(type => [FlavorBerryMap])
   berries: [FlavorBerryMap];
 
-  @Field(type => NamedAPIResource)
-  contest_type: NamedAPIResource;
+  @Field(type => ContestTypeResource)
+  contest_type: ContestTypeResource;
 
   @Field(type => Int)
   id: number;
@@ -75,8 +84,8 @@ export class BerryFlavor {
 
 @ObjectType()
 export class BerryFlavorMap {
-  @Field(type => NamedAPIResource)
-  flavor: NamedAPIResource;
+  @Field(type => BerryFlavorResource)
+  flavor: BerryFlavorResource;
 
   @Field(type => Int)
   potency: number;
@@ -84,8 +93,8 @@ export class BerryFlavorMap {
 
 @ObjectType()
 export class FlavorBerryMap {
-  @Field(type => NamedAPIResource)
-  berry: NamedAPIResource;
+  @Field(type => BerryResource)
+  berry: BerryResource;
 
   @Field(type => Int)
   potency: number;

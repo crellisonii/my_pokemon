@@ -1,4 +1,9 @@
-import { Effect, FlavorText, NamedAPIResource } from "../shared/shared-types";
+import {
+  BerryFlavorResource,
+  LanguageResource,
+  MoveResource,
+} from "../named-api-resources";
+import { Effect, FlavorText } from "../shared/shared-types";
 import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
@@ -24,8 +29,8 @@ export class ContestName {
   @Field(type => String)
   color: string;
 
-  @Field(type => NamedAPIResource)
-  language: NamedAPIResource;
+  @Field(type => LanguageResource)
+  language: LanguageResource;
 
   @Field(type => String)
   name: string;
@@ -33,8 +38,8 @@ export class ContestName {
 
 @ObjectType()
 export class ContestType {
-  @Field(type => NamedAPIResource)
-  berry_flavor: NamedAPIResource;
+  @Field(type => BerryFlavorResource)
+  berry_flavor: BerryFlavorResource;
 
   @Field(type => Int)
   id: number;
@@ -57,6 +62,6 @@ export class SuperContestEffect {
   @Field(type => Int)
   id: number;
 
-  @Field(type => [NamedAPIResource])
-  moves: [NamedAPIResource];
+  @Field(type => [MoveResource])
+  moves: [MoveResource];
 }
