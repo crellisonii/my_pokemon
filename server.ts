@@ -4,6 +4,7 @@ import {
   BerryResolver,
   ContestResolver,
   EncounterResolver,
+  EvolutionResolver,
 } from "./server/modules";
 
 import { ApolloServer } from "apollo-server-express";
@@ -14,7 +15,12 @@ const port = 4000;
 
 async function bootstrap() {
   const schema = await buildSchema({
-    resolvers: [BerryResolver, ContestResolver, EncounterResolver],
+    resolvers: [
+      BerryResolver,
+      ContestResolver,
+      EncounterResolver,
+      EvolutionResolver,
+    ],
     validate: { forbidUnknownValues: false },
   });
 
