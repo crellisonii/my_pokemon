@@ -6,6 +6,7 @@ import {
   EncounterResolver,
   EvolutionResolver,
   GamesResolver,
+  ItemResolver,
 } from "./server/modules";
 
 import { ApolloServer } from "apollo-server-express";
@@ -22,6 +23,7 @@ async function bootstrap() {
       EncounterResolver,
       EvolutionResolver,
       GamesResolver,
+      ItemResolver,
     ],
     validate: { forbidUnknownValues: false },
   });
