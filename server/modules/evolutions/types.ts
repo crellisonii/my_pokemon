@@ -1,34 +1,25 @@
-import {
-  EvolutionTriggerResource,
-  ItemResource,
-  LocationResource,
-  MoveResource,
-  PokemonSpeciesResource,
-  TypeResource,
-} from "../named-api-resources";
 import { Field, Int, ObjectType } from "type-graphql";
-
-import { Name } from "../shared";
+import { Name, NamedAPIResource } from "../shared";
 
 @ObjectType()
 export class EvolutionDetail {
   @Field(type => Int, { nullable: true })
   gender: number | null;
 
-  @Field(type => ItemResource, { nullable: true })
-  held_item: ItemResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  held_item: NamedAPIResource | null;
 
-  @Field(type => ItemResource, { nullable: true })
-  item: ItemResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  item: NamedAPIResource | null;
 
-  @Field(type => MoveResource, { nullable: true })
-  known_move: MoveResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  known_move: NamedAPIResource | null;
 
-  @Field(type => TypeResource, { nullable: true })
-  known_move_type: TypeResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  known_move_type: NamedAPIResource | null;
 
-  @Field(type => LocationResource, { nullable: true })
-  location: LocationResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  location: NamedAPIResource | null;
 
   @Field(type => Int, { nullable: true })
   min_affection: number | null;
@@ -45,11 +36,11 @@ export class EvolutionDetail {
   @Field(type => Boolean, { nullable: true })
   needs_overworld_rain: boolean | null;
 
-  @Field(type => PokemonSpeciesResource, { nullable: true })
-  party_species: PokemonSpeciesResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  party_species: NamedAPIResource | null;
 
-  @Field(type => TypeResource, { nullable: true })
-  party_type: TypeResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  party_type: NamedAPIResource | null;
 
   @Field(type => Int, { nullable: true })
   relative_physical_stats: number | null;
@@ -57,11 +48,11 @@ export class EvolutionDetail {
   @Field(type => String, { nullable: true })
   time_of_day: string | null;
 
-  @Field(type => PokemonSpeciesResource, { nullable: true })
-  trade_species: PokemonSpeciesResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  trade_species: NamedAPIResource | null;
 
-  @Field(type => EvolutionTriggerResource, { nullable: true })
-  trigger: EvolutionTriggerResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  trigger: NamedAPIResource | null;
 
   @Field(type => Boolean)
   turn_upside_down: boolean | null;
@@ -72,17 +63,20 @@ export class ChainLink {
   @Field(type => Boolean)
   is_baby: boolean | null;
 
-  @Field(type => PokemonSpeciesResource, { nullable: true })
-  species: PokemonSpeciesResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  species: NamedAPIResource | null;
 
   @Field(type => [EvolutionDetail], { nullable: true })
   evolution_details: [EvolutionDetail] | null;
+
+  @Field(type => [ChainLink], { nullable: true })
+  evolves_to: [ChainLink];
 }
 
 @ObjectType()
 export class EvolutionChain {
-  @Field(type => ItemResource, { nullable: true })
-  baby_trigger_item: ItemResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  baby_trigger_item: NamedAPIResource | null;
 
   @Field(type => ChainLink)
   chain: ChainLink | null;
@@ -99,9 +93,9 @@ export class EvolutionTrigger {
   @Field(type => String, { nullable: true })
   name: string | null;
 
-  @Field(type => Name, { nullable: true })
-  names: Name | null;
+  @Field(type => [Name], { nullable: true })
+  names: [Name] | null;
 
-  @Field(type => PokemonSpeciesResource, { nullable: true })
-  pokemon_species: PokemonSpeciesResource | null;
+  @Field(type => [NamedAPIResource], { nullable: true })
+  pokemon_species: [NamedAPIResource] | null;
 }
