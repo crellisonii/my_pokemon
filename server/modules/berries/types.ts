@@ -1,19 +1,10 @@
-import {
-  BerryFirmnessResource,
-  BerryFlavorResource,
-  BerryResource,
-  ContestTypeResource,
-  ItemResource,
-  TypeResource,
-} from "../named-api-resources";
 import { Field, Int, ObjectType } from "type-graphql";
-
-import { Name } from "../shared";
+import { Name, NamedAPIResource } from "../shared";
 
 @ObjectType()
 export class Berry {
-  @Field(type => BerryFirmnessResource, { nullable: true })
-  firmness: BerryFirmnessResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  firmness: NamedAPIResource | null;
 
   @Field(type => [BerryFlavorMap], { nullable: true })
   flavors: [BerryFlavorMap] | null;
@@ -24,8 +15,8 @@ export class Berry {
   @Field(type => Int, { nullable: true })
   id: number | null;
 
-  @Field(type => ItemResource, { nullable: true })
-  item: ItemResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  item: NamedAPIResource | null;
 
   @Field(type => Int, { nullable: true })
   max_harvest: number | null;
@@ -36,8 +27,8 @@ export class Berry {
   @Field(type => Int, { nullable: true })
   natural_gift_power: number | null;
 
-  @Field(type => TypeResource, { nullable: true })
-  natural_gift_type: TypeResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  natural_gift_type: NamedAPIResource | null;
 
   @Field(type => Int, { nullable: true })
   size: number | null;
@@ -51,8 +42,8 @@ export class Berry {
 
 @ObjectType()
 export class BerryFirmness {
-  @Field(type => [BerryFirmnessResource], { nullable: true })
-  berries: [BerryFirmnessResource] | null;
+  @Field(type => [NamedAPIResource], { nullable: true })
+  berries: [NamedAPIResource] | null;
 
   @Field(type => Int, { nullable: true })
   id: number | null;
@@ -69,8 +60,8 @@ export class BerryFlavor {
   @Field(type => [FlavorBerryMap], { nullable: true })
   berries: [FlavorBerryMap] | null;
 
-  @Field(type => ContestTypeResource, { nullable: true })
-  contest_type: ContestTypeResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  contest_type: NamedAPIResource | null;
 
   @Field(type => Int, { nullable: true })
   id: number | null;
@@ -84,8 +75,8 @@ export class BerryFlavor {
 
 @ObjectType()
 export class BerryFlavorMap {
-  @Field(type => BerryFlavorResource, { nullable: true })
-  flavor: BerryFlavorResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  flavor: NamedAPIResource | null;
 
   @Field(type => Int, { nullable: true })
   potency: number | null;
@@ -93,8 +84,8 @@ export class BerryFlavorMap {
 
 @ObjectType()
 export class FlavorBerryMap {
-  @Field(type => BerryResource, { nullable: true })
-  berry: BerryResource | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  berry: NamedAPIResource | null;
 
   @Field(type => Int, { nullable: true })
   potency: number | null;
