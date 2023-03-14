@@ -1,7 +1,11 @@
 import axios from "axios";
 import { Arg, Query, Resolver } from "type-graphql";
 import { baseUrl } from "../../constants";
-import { getApiError } from "../../helpers";
+import {
+  getAllTypesAPIBuilder,
+  getApiError,
+  getTypeAPIBuilder,
+} from "../../utils";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
 import {
   ContestEffect,
@@ -11,9 +15,9 @@ import {
 
 @Resolver()
 export class ContestResolver {
-  contestTypeUrl = "contest-type/";
-  contestEffectUrl = "contest-effect/";
-  superContestEffectUrl = "super-contest-effect/";
+  contestTypeUrl = "contest-type";
+  contestEffectUrl = "contest-effect";
+  superContestEffectUrl = "super-contest-effect";
 
   @Query(returns => ContestType)
   async getContestType(@Arg("nameId") input: string): Promise<ContestType> {
@@ -23,7 +27,7 @@ export class ContestResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.contestTypeUrl}${input}`;
+      const url = getTypeAPIBuilder(this.contestTypeUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:24 ~ ContestResolver ~ getContestType ~ url:`,
         url
@@ -48,7 +52,7 @@ export class ContestResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.contestTypeUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.contestTypeUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:48 ~ ContestResolver ~ getAllContestTypes ~ url:`,
         url
@@ -70,7 +74,7 @@ export class ContestResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.contestEffectUrl}${input}`;
+      const url = getTypeAPIBuilder(this.contestEffectUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:70 ~ ContestResolver ~ getContestEffect ~ url:`,
         url
@@ -95,7 +99,7 @@ export class ContestResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.contestEffectUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.contestEffectUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:95 ~ ContestResolver ~ getAllContestEffects ~ url:`,
         url
@@ -119,7 +123,7 @@ export class ContestResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.superContestEffectUrl}${input}`;
+      const url = getTypeAPIBuilder(this.superContestEffectUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:114 ~ ContestResolver ~ getSuperContestEffect ~ url:`,
         url
@@ -144,7 +148,7 @@ export class ContestResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.superContestEffectUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.superContestEffectUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:131 ~ ContestResolver ~ getAllSuperContestEffect ~ url:`,
         url

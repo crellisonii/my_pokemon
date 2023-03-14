@@ -1,14 +1,18 @@
 import axios from "axios";
 import { Arg, Query, Resolver } from "type-graphql";
 import { baseUrl } from "../../constants";
-import { getApiError } from "../../helpers";
+import {
+  getAllTypesAPIBuilder,
+  getApiError,
+  getTypeAPIBuilder,
+} from "../../utils";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
 import { EvolutionChain, EvolutionTrigger } from "./evolution.types";
 
 @Resolver()
 export class EvolutionResolver {
-  evolutionChainUrl = "evolution-chain/";
-  evolutionTriggerUrl = "evolution-trigger/";
+  evolutionChainUrl = "evolution-chain";
+  evolutionTriggerUrl = "evolution-trigger";
 
   @Query(returns => EvolutionChain)
   async getEvolutionChain(@Arg("id") input: string): Promise<EvolutionChain> {
@@ -18,7 +22,7 @@ export class EvolutionResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.evolutionChainUrl}${input}`;
+      const url = getTypeAPIBuilder(this.evolutionChainUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:17 ~ EvolutionResolver ~ getEvolutionChain ~ url:`,
         url
@@ -43,7 +47,7 @@ export class EvolutionResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.evolutionChainUrl}?limit=${limit}&offset${offset}`;
+      const url = getAllTypesAPIBuilder(this.evolutionChainUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:37 ~ EvolutionResolver ~ getAllEvolutionChains ~ url:`,
         url
@@ -67,7 +71,7 @@ export class EvolutionResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.evolutionTriggerUrl}${input}`;
+      const url = getTypeAPIBuilder(this.evolutionTriggerUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:53 ~ EvolutionResolver ~ getEvolutionTrigger ~ url:`,
         url
@@ -92,7 +96,7 @@ export class EvolutionResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.evolutionTriggerUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.evolutionTriggerUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:70 ~ EvolutionResolver ~ getAllEvolutionTriggers ~ url:`,
         url

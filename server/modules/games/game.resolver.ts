@@ -1,16 +1,20 @@
 import axios from "axios";
 import { Arg, Query, Resolver } from "type-graphql";
 import { baseUrl } from "../../constants";
-import { getApiError } from "../../helpers";
+import {
+  getAllTypesAPIBuilder,
+  getApiError,
+  getTypeAPIBuilder,
+} from "../../utils";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
 import { Generation, Pokedex, Version, VersionGroup } from "./game.types";
 
 @Resolver()
 export class GamesResolver {
-  generationApi = "generation/";
-  pokedexApi = "pokedex/";
-  versionApi = "version/";
-  versionGroupsApi = "version-group/";
+  generationApi = "generation";
+  pokedexApi = "pokedex";
+  versionApi = "version";
+  versionGroupsApi = "version-group";
 
   @Query(returns => Generation)
   async getGeneration(@Arg("nameId") input: string): Promise<Generation> {
@@ -20,7 +24,7 @@ export class GamesResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.generationApi}${input}`;
+      const url = getTypeAPIBuilder(this.generationApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:24 ~ GamesResolver ~ getGeneration ~ url:`,
         url
@@ -45,7 +49,7 @@ export class GamesResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.generationApi}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.generationApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:49 ~ GamesResolver ~ getAllGenerations ~ url:`,
         url
@@ -67,7 +71,7 @@ export class GamesResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.pokedexApi}${input}`;
+      const url = getTypeAPIBuilder(this.pokedexApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:71 ~ GamesResolver ~ getPokedex ~ url:`,
         url
@@ -92,7 +96,7 @@ export class GamesResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.pokedexApi}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.pokedexApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:96 ~ GamesResolver ~ getAllPokedexes ~ url:`,
         url
@@ -114,7 +118,7 @@ export class GamesResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.versionApi}${input}`;
+      const url = getTypeAPIBuilder(this.versionApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:118 ~ GamesResolver ~ getVersion ~ url:`,
         url
@@ -139,7 +143,7 @@ export class GamesResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.versionApi}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.versionApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:143 ~ GamesResolver ~ getAllVersions ~ url:`,
         url
@@ -161,7 +165,7 @@ export class GamesResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.versionGroupsApi}${input}`;
+      const url = getTypeAPIBuilder(this.versionGroupsApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:165 ~ GamesResolver ~ getVersionGroup ~ url:`,
         url
@@ -186,7 +190,7 @@ export class GamesResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.versionGroupsApi}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.versionGroupsApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:190 ~ GamesResolver ~ getAllVersionGroups ~ url:`,
         url
