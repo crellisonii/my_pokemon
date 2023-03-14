@@ -1,2 +1,2 @@
-export * from "./resolver";
-export * from "./types";
+export * from "./encounter.resolver";
+export * from "./encounter.types";

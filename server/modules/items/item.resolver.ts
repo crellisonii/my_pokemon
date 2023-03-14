@@ -5,19 +5,23 @@ import {
   ItemCategory,
   ItemFlingEffect,
   ItemPocket,
-} from "./types";
+} from "./item.types";
 import { baseUrl } from "../../constants/urls";
 import axios from "axios";
-import { getApiError } from "../../helpers";
+import {
+  getAllTypesAPIBuilder,
+  getApiError,
+  getTypeAPIBuilder,
+} from "../../utils";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
 
 @Resolver()
 export class ItemResolver {
-  itemUrl = "item/";
-  itemAttributeUrl = "item-attribute/";
-  itemCategoryUrl = "item-category/";
-  itemFlingEffectUrl = "item-fling-effect/";
-  itemPocketUrl = "item-pocket/";
+  itemUrl = "item";
+  itemAttributeUrl = "item-attribute";
+  itemCategoryUrl = "item-category";
+  itemFlingEffectUrl = "item-fling-effect";
+  itemPocketUrl = "item-pocket";
 
   @Query(returns => Item)
   async getItem(@Arg("nameId") input: string): Promise<Item> {
@@ -27,7 +31,7 @@ export class ItemResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.itemUrl}${input}`;
+      const url = getTypeAPIBuilder(this.itemUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:31 ~ ItemResolver ~ getItem ~ url:`,
         url
@@ -52,7 +56,7 @@ export class ItemResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.itemUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.itemUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:56 ~ ItemResolver ~ getAllItems ~ url:`,
         url
@@ -74,7 +78,7 @@ export class ItemResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.itemUrl}${input}`;
+      const url = getTypeAPIBuilder(this.itemAttributeUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:78 ~ ItemResolver ~ getItemAttribute ~ url:`,
         url
@@ -99,7 +103,7 @@ export class ItemResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.itemUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.itemAttributeUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:103 ~ ItemResolver ~ getAllItemAttributes ~ url:`,
         url
@@ -121,7 +125,7 @@ export class ItemResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.itemUrl}${input}`;
+      const url = getTypeAPIBuilder(this.itemCategoryUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:125 ~ ItemResolver ~ getItemCategory ~ url:`,
         url
@@ -146,7 +150,7 @@ export class ItemResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.itemUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.itemCategoryUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:150 ~ ItemResolver ~ getAllItemCategories ~ url:`,
         url
@@ -170,7 +174,7 @@ export class ItemResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.itemUrl}${input}`;
+      const url = getTypeAPIBuilder(this.itemFlingEffectUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:174 ~ ItemResolver ~ getItemFlingEffect ~ url:`,
         url
@@ -195,7 +199,7 @@ export class ItemResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.itemUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.itemFlingEffectUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:199 ~ ItemResolver ~ getAllItemFlingEffects ~ url:`,
         url
@@ -217,7 +221,7 @@ export class ItemResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.itemUrl}${input}`;
+      const url = getTypeAPIBuilder(this.itemPocketUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:221 ~ ItemResolver ~ getItemPocket ~ url:`,
         url
@@ -242,7 +246,7 @@ export class ItemResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.itemUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.itemPocketUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:246 ~ ItemResolver ~ getAllItemPockets ~ url:`,
         url

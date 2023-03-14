@@ -1,28 +1,31 @@
 import axios from "axios";
 import { Arg, Query, Resolver } from "type-graphql";
-import { baseUrl } from "../../constants";
-import { getApiError } from "../../helpers";
+import {
+  getAllTypesAPIBuilder,
+  getApiError,
+  getTypeAPIBuilder,
+} from "../../utils";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
-import { Generation, Pokedex, Version, VersionGroup } from "./types";
+import { Location, LocationArea, PalParkArea, Region } from "./location.type";
 
 @Resolver()
-export class GamesResolver {
-  generationApi = "generation/";
-  pokedexApi = "pokedex/";
-  versionApi = "version/";
-  versionGroupsApi = "version-group/";
+export class LocationResolver {
+  locationUrl = "location";
+  locationAreaUrl = "location-area";
+  palParkAreaUrl = "pal-park-area";
+  regionUrl = "region";
 
-  @Query(returns => Generation)
-  async getGeneration(@Arg("nameId") input: string): Promise<Generation> {
+  @Query(returns => Location)
+  async getLocation(@Arg("nameId") input: string): Promise<Location> {
     console.log(
-      `🚀 ~ file: resolver.ts:17 ~ GamesResolver ~ getGeneration ~ input:`,
+      `🚀 ~ file: location.resolver.ts:21 ~ LocationResolver ~ getLocation ~ input:`,
       input
     );
 
     try {
-      const url = `${baseUrl}${this.generationApi}${input}`;
+      const url = getTypeAPIBuilder(this.locationUrl, input);
       console.log(
-        `🚀 ~ file: resolver.ts:24 ~ GamesResolver ~ getGeneration ~ url:`,
+        `🚀 ~ file: location.resolver.ts:28 ~ LocationResolver ~ getLocation ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -35,19 +38,18 @@ export class GamesResolver {
   }
 
   @Query(returns => NamedAPIResourceList)
-  async getAllGenerations(
+  async getAllLocations(
     @Arg("pagination") input: PaginationInput
   ): Promise<NamedAPIResourceList> {
     console.log(
-      `🚀 ~ file: resolver.ts:41 ~ GamesResolver ~ getAllGenerations ~ input:`,
+      `🚀 ~ file: location.resolver.ts:45 ~ LocationResolver ~ getAllLocations ~ input:`,
       input
     );
 
     try {
-      const { limit, offset } = input;
-      const url = `${baseUrl}${this.generationApi}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.locationUrl, input);
       console.log(
-        `🚀 ~ file: resolver.ts:49 ~ GamesResolver ~ getAllGenerations ~ url:`,
+        `🚀 ~ file: location.resolver.ts:52 ~ LocationResolver ~ getAllLocations ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -59,17 +61,17 @@ export class GamesResolver {
     }
   }
 
-  @Query(returns => Pokedex)
-  async getPokedex(@Arg("nameId") input: string): Promise<Pokedex> {
+  @Query(returns => LocationArea)
+  async getLocationArea(@Arg("nameId") input: string): Promise<LocationArea> {
     console.log(
-      `🚀 ~ file: resolver.ts:64 ~ GamesResolver ~ getPokedex ~ input:`,
+      `🚀 ~ file: location.resolver.ts:67 ~ LocationResolver ~ getLocationArea ~ input:`,
       input
     );
 
     try {
-      const url = `${baseUrl}${this.pokedexApi}${input}`;
+      const url = getTypeAPIBuilder(this.locationAreaUrl, input);
       console.log(
-        `🚀 ~ file: resolver.ts:71 ~ GamesResolver ~ getPokedex ~ url:`,
+        `🚀 ~ file: location.resolver.ts:74 ~ LocationResolver ~ getLocationArea ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -82,19 +84,18 @@ export class GamesResolver {
   }
 
   @Query(returns => NamedAPIResourceList)
-  async getAllPokedexes(
+  async getAllLocationAreas(
     @Arg("pagination") input: PaginationInput
   ): Promise<NamedAPIResourceList> {
     console.log(
-      `🚀 ~ file: resolver.ts:88 ~ GamesResolver ~ getAllPokedexes ~ input:`,
+      `🚀 ~ file: location.resolver.ts:91 ~ LocationResolver ~ getAllLocationAreas ~ input:`,
       input
     );
 
     try {
-      const { limit, offset } = input;
-      const url = `${baseUrl}${this.pokedexApi}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.locationAreaUrl, input);
       console.log(
-        `🚀 ~ file: resolver.ts:96 ~ GamesResolver ~ getAllPokedexes ~ url:`,
+        `🚀 ~ file: location.resolver.ts:98 ~ LocationResolver ~ getAllLocationAreas ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -106,17 +107,17 @@ export class GamesResolver {
     }
   }
 
-  @Query(returns => Version)
-  async getVersion(@Arg("nameId") input: string): Promise<Version> {
+  @Query(returns => PalParkArea)
+  async getPalParkArea(@Arg("nameId") input: string): Promise<PalParkArea> {
     console.log(
-      `🚀 ~ file: resolver.ts:111 ~ GamesResolver ~ getVersion ~ input:`,
+      `🚀 ~ file: location.resolver.ts:113 ~ LocationResolver ~ getPalParkArea ~ input:`,
       input
     );
 
     try {
-      const url = `${baseUrl}${this.versionApi}${input}`;
+      const url = getTypeAPIBuilder(this.palParkAreaUrl, input);
       console.log(
-        `🚀 ~ file: resolver.ts:118 ~ GamesResolver ~ getVersion ~ url:`,
+        `🚀 ~ file: location.resolver.ts:120 ~ LocationResolver ~ getPalParkArea ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -129,19 +130,18 @@ export class GamesResolver {
   }
 
   @Query(returns => NamedAPIResourceList)
-  async getAllVersions(
+  async getAllPalParkAreas(
     @Arg("pagination") input: PaginationInput
   ): Promise<NamedAPIResourceList> {
     console.log(
-      `🚀 ~ file: resolver.ts:135 ~ GamesResolver ~ getAllVersions ~ input:`,
+      `🚀 ~ file: location.resolver.ts:137 ~ LocationResolver ~ getAllPalParkAreas ~ input:`,
       input
     );
 
     try {
-      const { limit, offset } = input;
-      const url = `${baseUrl}${this.versionApi}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.palParkAreaUrl, input);
       console.log(
-        `🚀 ~ file: resolver.ts:143 ~ GamesResolver ~ getAllVersions ~ url:`,
+        `🚀 ~ file: location.resolver.ts:144 ~ LocationResolver ~ getAllPalParkAreas ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -153,17 +153,17 @@ export class GamesResolver {
     }
   }
 
-  @Query(returns => VersionGroup)
-  async getVersionGroup(@Arg("nameId") input: string): Promise<VersionGroup> {
+  @Query(returns => Region)
+  async getRegion(@Arg("nameId") input: string): Promise<Region> {
     console.log(
-      `🚀 ~ file: resolver.ts:158 ~ GamesResolver ~ getVersionGroup ~ input:`,
+      `🚀 ~ file: location.resolver.ts:159 ~ LocationResolver ~ getRegion ~ input:`,
       input
     );
 
     try {
-      const url = `${baseUrl}${this.versionGroupsApi}${input}`;
+      const url = getTypeAPIBuilder(this.regionUrl, input);
       console.log(
-        `🚀 ~ file: resolver.ts:165 ~ GamesResolver ~ getVersionGroup ~ url:`,
+        `🚀 ~ file: location.resolver.ts:166 ~ LocationResolver ~ getRegion ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -176,19 +176,18 @@ export class GamesResolver {
   }
 
   @Query(returns => NamedAPIResourceList)
-  async getAllVersionGroups(
+  async getAllRegions(
     @Arg("pagination") input: PaginationInput
   ): Promise<NamedAPIResourceList> {
     console.log(
-      `🚀 ~ file: resolver.ts:182 ~ GamesResolver ~ getAllVersionGroups ~ input:`,
+      `🚀 ~ file: location.resolver.ts:183 ~ LocationResolver ~ getAllRegions ~ input:`,
       input
     );
 
     try {
-      const { limit, offset } = input;
-      const url = `${baseUrl}${this.versionGroupsApi}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.regionUrl, input);
       console.log(
-        `🚀 ~ file: resolver.ts:190 ~ GamesResolver ~ getAllVersionGroups ~ url:`,
+        `🚀 ~ file: location.resolver.ts:190 ~ LocationResolver ~ getAllRegions ~ url:`,
         url
       );
       const response = await axios.get(url);

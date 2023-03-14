@@ -1,15 +1,19 @@
 import { Arg, Query, Resolver } from "type-graphql";
 import { baseUrl } from "../../constants";
-import { Berry, BerryFirmness, BerryFlavor } from "./types";
+import { Berry, BerryFirmness, BerryFlavor } from "./berry.types";
 import axios from "axios";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
-import { getApiError } from "../../helpers";
+import {
+  getAllTypesAPIBuilder,
+  getApiError,
+  getTypeAPIBuilder,
+} from "../../utils";
 
 @Resolver()
 export class BerryResolver {
-  berryUrl = "berry/";
-  firmnessUrl = "berry-firmness/";
-  flavorUrl = "berry-flavor/";
+  berryUrl = "berry";
+  berryFirmnessUrl = "berry-firmness";
+  berryFlavorUrl = "berry-flavor";
 
   @Query(returns => Berry)
   async getBerry(@Arg("nameId") input: string): Promise<Berry> {
@@ -18,7 +22,7 @@ export class BerryResolver {
       input
     );
     try {
-      const url = `${baseUrl}${this.berryUrl}/${input}`;
+      const url = getTypeAPIBuilder(this.berryUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:24 ~ BerryResolver ~ getBerry ~ url:`,
         url
@@ -39,7 +43,7 @@ export class BerryResolver {
     console.log(`🚀 ~ file: resolver.ts:40 ~ BerryResolver ~ input:`, input);
     try {
       const { limit, offset } = input;
-      let url = `${baseUrl}${this.berryUrl}?limit=${limit}&offset=${offset}`;
+      let url = getAllTypesAPIBuilder(this.berryUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:44 ~ BerryResolver ~ getAllBerries ~ url:`,
         url
@@ -61,7 +65,7 @@ export class BerryResolver {
     );
 
     try {
-      const url = `${baseUrl}${this.firmnessUrl}/${input}`;
+      const url = getTypeAPIBuilder(this.berryFirmnessUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:64 ~ BerryResolver ~ getBerryFirmness ~ url:`,
         url
@@ -83,7 +87,7 @@ export class BerryResolver {
 
     try {
       const { limit, offset } = input;
-      let url = `${baseUrl}${this.firmnessUrl}?limit=${limit}&offset=${offset}`;
+      let url = getAllTypesAPIBuilder(this.berryFirmnessUrl, input);
       console.log(`🚀 ~ file: resolver.ts:81 ~ BerryResolver ~ url:`, url);
       const response = await axios.get(url);
       return response.data;
@@ -101,7 +105,7 @@ export class BerryResolver {
       input
     );
     try {
-      const url = `${baseUrl}${this.flavorUrl}/${input}`;
+      const url = getTypeAPIBuilder(this.berryFlavorUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:99 ~ BerryResolver ~ getBerryFlavor ~ url:`,
         url
@@ -126,7 +130,7 @@ export class BerryResolver {
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.flavorUrl}?limit=${limit}&${offset}`;
+      const url = getAllTypesAPIBuilder(this.berryFlavorUrl, input);
       const response = await axios.get(url);
       return response.data;
     } catch (e) {
