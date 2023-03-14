@@ -4,4 +4,5 @@ export * from "./encounters";
 export * from "./evolutions";
 export * from "./games";
 export * from "./items";
+export * from "./locations";
 export * from "./shared";
