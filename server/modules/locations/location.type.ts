@@ -9,122 +9,122 @@ import {
 @ObjectType()
 export class EncounterVersionDetails {
   @Field(type => Int, { nullable: true })
-  rate: number;
+  rate: number | null;
 
   @Field(type => NamedAPIResource, { nullable: true })
-  version: NamedAPIResource;
+  version: NamedAPIResource | null;
 }
 
 @ObjectType()
 export class EncounterMethodRate {
   @Field(type => NamedAPIResource, { nullable: true })
-  encounter_method: NamedAPIResource;
+  encounter_method: NamedAPIResource | null;
 
   @Field(type => [EncounterVersionDetails], { nullable: true })
-  version_details: [EncounterVersionDetails];
+  version_details: [EncounterVersionDetails] | null;
 }
 
 @ObjectType()
 export class PokemonEncounter {
   @Field(type => NamedAPIResource, { nullable: true })
-  pokemon: NamedAPIResource;
+  pokemon: NamedAPIResource | null;
 
   @Field(type => [VersionEncounterDetail], { nullable: true })
-  version_details: [VersionEncounterDetail];
+  version_details: [VersionEncounterDetail] | null;
 }
 
 @ObjectType()
 export class Location {
   @Field(type => [NamedAPIResource], { nullable: true })
-  areas: [NamedAPIResource];
+  areas: [NamedAPIResource] | null;
 
   @Field(type => [GenerationGameIndex], { nullable: true })
-  game_indices: [GenerationGameIndex];
+  game_indices: [GenerationGameIndex] | null;
 
   @Field(type => Int, { nullable: true })
-  id: number;
+  id: number | null;
 
   @Field(type => String, { nullable: true })
-  name: string;
+  name: string | null;
 
   @Field(type => [Name], { nullable: true })
-  names: [Name];
+  names: [Name] | null;
 
   @Field(type => NamedAPIResource, { nullable: true })
-  region: NamedAPIResource;
+  region: NamedAPIResource | null;
 }
 
 @ObjectType()
 export class LocationArea {
   @Field(type => [EncounterMethodRate], { nullable: true })
-  encounter_method_rates: [EncounterMethodRate];
+  encounter_method_rates: [EncounterMethodRate] | null;
 
   @Field(type => Int, { nullable: true })
-  game_index: number;
+  game_index: number | null;
 
   @Field(type => Int, { nullable: true })
-  id: number;
+  id: number | null;
 
   @Field(type => NamedAPIResource, { nullable: true })
-  location: NamedAPIResource;
+  location: NamedAPIResource | null;
 
   @Field(type => String, { nullable: true })
-  name: string;
+  name: string | null;
 
   @Field(type => [Name], { nullable: true })
-  names: [Name];
+  names: [Name] | null;
 
   @Field(type => [PokemonEncounter], { nullable: true })
-  pokemon_encounters: [PokemonEncounter];
+  pokemon_encounters: [PokemonEncounter] | null;
 }
 
 @ObjectType()
 export class PalParkEncounterSpecies {
   @Field(type => Int, { nullable: true })
-  base_score: number;
+  base_score: number | null;
 
   @Field(type => Int, { nullable: true })
-  rate: number;
+  rate: number | null;
 
   @Field(type => NamedAPIResource, { nullable: true })
-  pokemon_species: NamedAPIResource;
+  pokemon_species: NamedAPIResource | null;
 }
 
 @ObjectType()
 export class PalParkArea {
   @Field(type => Int, { nullable: true })
-  id: number;
+  id: number | null;
 
   @Field(type => String, { nullable: true })
-  name: string;
+  name: string | null;
 
   @Field(type => [Name], { nullable: true })
-  names: [Name];
+  names: [Name] | null;
 
   @Field(type => [PalParkEncounterSpecies], { nullable: true })
-  pokemon_encounters: [PalParkEncounterSpecies];
+  pokemon_encounters: [PalParkEncounterSpecies] | null;
 }
 
 @ObjectType()
 export class Region {
   @Field(type => Int, { nullable: true })
-  id: number;
+  id: number | null;
 
   @Field(type => [NamedAPIResource], { nullable: true })
-  locations: [NamedAPIResource];
+  locations: [NamedAPIResource] | null;
 
   @Field(type => NamedAPIResource, { nullable: true })
-  main_generation: NamedAPIResource;
+  main_generation: NamedAPIResource | null;
 
   @Field(type => String, { nullable: true })
-  name: string;
+  name: string | null;
 
   @Field(type => [Name], { nullable: true })
-  names: [Name];
+  names: [Name] | null;
 
   @Field(type => [NamedAPIResource], { nullable: true })
-  pokedexes: [NamedAPIResource];
+  pokedexes: [NamedAPIResource] | null;
 
   @Field(type => [NamedAPIResource], { nullable: true })
-  version_groups: [NamedAPIResource];
+  version_groups: [NamedAPIResource] | null;
 }
