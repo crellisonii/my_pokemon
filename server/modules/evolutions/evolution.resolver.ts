@@ -3,7 +3,7 @@ import { Arg, Query, Resolver } from "type-graphql";
 import { baseUrl } from "../../constants";
 import { getApiError } from "../../helpers";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
-import { EvolutionChain, EvolutionTrigger } from "./types";
+import { EvolutionChain, EvolutionTrigger } from "./evolution.types";
 
 @Resolver()
 export class EvolutionResolver {

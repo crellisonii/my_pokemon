@@ -3,7 +3,7 @@ import { Arg, Query, Resolver } from "type-graphql";
 import { baseUrl } from "../../constants";
 import { getApiError } from "../../helpers";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
-import { Generation, Pokedex, Version, VersionGroup } from "./types";
+import { Generation, Pokedex, Version, VersionGroup } from "./game.types";
 
 @Resolver()
 export class GamesResolver {

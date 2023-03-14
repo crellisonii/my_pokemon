@@ -1,2 +1,2 @@
-export * from "./shared-inputs";
-export * from "./shared-types";
+export * from "./shared.input";
+export * from "./shared.types";

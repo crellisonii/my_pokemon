@@ -1,6 +1,6 @@
 import { Arg, Query, Resolver } from "type-graphql";
 import { baseUrl } from "../../constants";
-import { Berry, BerryFirmness, BerryFlavor } from "./types";
+import { Berry, BerryFirmness, BerryFlavor } from "./berry.types";
 import axios from "axios";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
 import { getApiError } from "../../helpers";

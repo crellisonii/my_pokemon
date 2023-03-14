@@ -5,7 +5,7 @@ import {
   ItemCategory,
   ItemFlingEffect,
   ItemPocket,
-} from "./types";
+} from "./item.types";
 import { baseUrl } from "../../constants/urls";
 import axios from "axios";
 import { getApiError } from "../../helpers";

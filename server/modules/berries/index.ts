@@ -1,2 +1,2 @@
-export * from "./resolver";
-export * from "./types";
+export * from "./berry.resolver";
+export * from "./berry.types";
