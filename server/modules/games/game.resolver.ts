@@ -11,10 +11,10 @@ import { Generation, Pokedex, Version, VersionGroup } from "./game.types";
 
 @Resolver()
 export class GamesResolver {
-  generationApi = "generation";
-  pokedexApi = "pokedex";
-  versionApi = "version";
-  versionGroupsApi = "version-group";
+  private generationApi = "generation";
+  private pokedexApi = "pokedex";
+  private versionApi = "version";
+  private versionGroupsApi = "version-group";
 
   @Query(returns => Generation)
   async getGeneration(@Arg("nameId") input: string): Promise<Generation> {

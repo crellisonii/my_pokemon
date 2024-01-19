@@ -10,7 +10,7 @@ import { Machine } from "./machine.types";
 
 @Resolver()
 export class MachineResolver {
-  machineUrl = "machine";
+  private machineUrl = "machine";
 
   @Query(returns => Machine)
   async getMachine(@Arg("id") input: string): Promise<Machine> {

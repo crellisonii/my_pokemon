@@ -15,9 +15,9 @@ import {
 
 @Resolver()
 export class ContestResolver {
-  contestTypeUrl = "contest-type";
-  contestEffectUrl = "contest-effect";
-  superContestEffectUrl = "super-contest-effect";
+  private typeUrl = "contest-type";
+  private effectUrl = "contest-effect";
+  private superContestEffectUrl = "super-contest-effect";
 
   @Query(returns => ContestType)
   async getContestType(@Arg("nameId") input: string): Promise<ContestType> {
@@ -27,7 +27,7 @@ export class ContestResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.contestTypeUrl, input);
+      const url = getTypeAPIBuilder(this.typeUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:24 ~ ContestResolver ~ getContestType ~ url:`,
         url
@@ -52,7 +52,7 @@ export class ContestResolver {
 
     try {
       const { limit, offset } = input;
-      const url = getAllTypesAPIBuilder(this.contestTypeUrl, input);
+      const url = getAllTypesAPIBuilder(this.typeUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:48 ~ ContestResolver ~ getAllContestTypes ~ url:`,
         url
@@ -74,7 +74,7 @@ export class ContestResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.contestEffectUrl, input);
+      const url = getTypeAPIBuilder(this.effectUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:70 ~ ContestResolver ~ getContestEffect ~ url:`,
         url
@@ -99,7 +99,7 @@ export class ContestResolver {
 
     try {
       const { limit, offset } = input;
-      const url = getAllTypesAPIBuilder(this.contestEffectUrl, input);
+      const url = getAllTypesAPIBuilder(this.effectUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:95 ~ ContestResolver ~ getAllContestEffects ~ url:`,
         url

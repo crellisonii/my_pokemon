@@ -18,13 +18,13 @@ import { NamedAPIResourceList, PaginationInput } from "../shared";
 
 @Resolver()
 export class MoveResolver {
-  moveUrl = "move";
-  moveAilmentUrl = "move-ailment";
-  moveBattleStyleUrl = "move-battle-style";
-  moveCategoryUrl = "move-category";
-  moveDamageClassUrl = "move-damage-class";
-  moveLearnMethodUrl = "move-learn-method";
-  moveTargetUrl = "move-target";
+  private moveUrl = "move";
+  private ailmentUrl = "move-ailment";
+  private battleStyleUrl = "move-battle-style";
+  private categoryUrl = "move-category";
+  private damageClassUrl = "move-damage-class";
+  private learnMethodUrl = "move-learn-method";
+  private targetUrl = "move-target";
 
   @Query(returns => Move)
   async getMove(@Arg("nameId") input: string): Promise<Move> {
@@ -80,7 +80,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.moveAilmentUrl, input);
+      const url = getTypeAPIBuilder(this.ailmentUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:84 ~ MoveResolver ~ getMoveAilment ~ url:`,
         url
@@ -104,7 +104,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getAllTypesAPIBuilder(this.moveAilmentUrl, input);
+      const url = getAllTypesAPIBuilder(this.ailmentUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:108 ~ MoveResolver ~ getAllMoveAilments ~ url:`,
         url
@@ -128,7 +128,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.moveBattleStyleUrl, input);
+      const url = getTypeAPIBuilder(this.battleStyleUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:132 ~ MoveResolver ~ getMoveBattleStyle ~ url:`,
         url
@@ -152,7 +152,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getAllTypesAPIBuilder(this.moveBattleStyleUrl, input);
+      const url = getAllTypesAPIBuilder(this.battleStyleUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:156 ~ MoveResolver ~ getAllMoveBattleStyles ~ url:`,
         url
@@ -174,7 +174,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.moveCategoryUrl, input);
+      const url = getTypeAPIBuilder(this.categoryUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:178 ~ MoveResolver ~ getMoveCategory ~ url:`,
         url
@@ -198,7 +198,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getAllTypesAPIBuilder(this.moveCategoryUrl, input);
+      const url = getAllTypesAPIBuilder(this.categoryUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:202 ~ MoveResolver ~ getAllMoveCategories ~ url:`,
         url
@@ -222,7 +222,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.moveDamageClassUrl, input);
+      const url = getTypeAPIBuilder(this.damageClassUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:226 ~ MoveResolver ~ getMoveDamageClass ~ url:`,
         url
@@ -246,7 +246,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getAllTypesAPIBuilder(this.moveDamageClassUrl, input);
+      const url = getAllTypesAPIBuilder(this.damageClassUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:250 ~ MoveResolver ~ getAllMoveDamageClasses ~ url:`,
         url
@@ -270,7 +270,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.moveLearnMethodUrl, input);
+      const url = getTypeAPIBuilder(this.learnMethodUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:274 ~ MoveResolver ~ getMoveLearnMethod ~ url:`,
         url
@@ -294,7 +294,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getAllTypesAPIBuilder(this.moveLearnMethodUrl, input);
+      const url = getAllTypesAPIBuilder(this.learnMethodUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:298 ~ MoveResolver ~ getAllMoveLearnMethods ~ url:`,
         url
@@ -316,7 +316,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.moveTargetUrl, input);
+      const url = getTypeAPIBuilder(this.targetUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:320 ~ MoveResolver ~ getMoveTarget ~ url:`,
         url
@@ -340,7 +340,7 @@ export class MoveResolver {
     );
 
     try {
-      const url = getAllTypesAPIBuilder(this.moveTargetUrl, input);
+      const url = getAllTypesAPIBuilder(this.targetUrl, input);
       console.log(
         `🚀 ~ file: move.resolver.ts:344 ~ MoveResolver ~ getAllMoveTargets ~ url:`,
         url

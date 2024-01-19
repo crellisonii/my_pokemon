@@ -11,9 +11,9 @@ import {
 
 @Resolver()
 export class BerryResolver {
-  berryUrl = "berry";
-  berryFirmnessUrl = "berry-firmness";
-  berryFlavorUrl = "berry-flavor";
+  private berryUrl = "berry";
+  private firmnessUrl = "berry-firmness";
+  private flavorUrl = "berry-flavor";
 
   @Query(returns => Berry)
   async getBerry(@Arg("nameId") input: string): Promise<Berry> {
@@ -28,6 +28,7 @@ export class BerryResolver {
         url
       );
       const response = await axios.get(url);
+      console.log(response.data);
       return response.data;
     } catch (e) {
       const error = getApiError(e);
@@ -38,11 +39,11 @@ export class BerryResolver {
 
   @Query(returns => NamedAPIResourceList)
   async getAllBerries(
-    @Arg("pagination") input: PaginationInput
+    @Arg("pagination")
+    input: PaginationInput
   ): Promise<NamedAPIResourceList> {
     console.log(`🚀 ~ file: resolver.ts:40 ~ BerryResolver ~ input:`, input);
     try {
-      const { limit, offset } = input;
       let url = getAllTypesAPIBuilder(this.berryUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:44 ~ BerryResolver ~ getAllBerries ~ url:`,
@@ -65,7 +66,7 @@ export class BerryResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.berryFirmnessUrl, input);
+      const url = getTypeAPIBuilder(this.firmnessUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:64 ~ BerryResolver ~ getBerryFirmness ~ url:`,
         url
@@ -87,7 +88,7 @@ export class BerryResolver {
 
     try {
       const { limit, offset } = input;
-      let url = getAllTypesAPIBuilder(this.berryFirmnessUrl, input);
+      let url = getAllTypesAPIBuilder(this.firmnessUrl, input);
       console.log(`🚀 ~ file: resolver.ts:81 ~ BerryResolver ~ url:`, url);
       const response = await axios.get(url);
       return response.data;
@@ -105,7 +106,7 @@ export class BerryResolver {
       input
     );
     try {
-      const url = getTypeAPIBuilder(this.berryFlavorUrl, input);
+      const url = getTypeAPIBuilder(this.flavorUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:99 ~ BerryResolver ~ getBerryFlavor ~ url:`,
         url
@@ -129,8 +130,7 @@ export class BerryResolver {
     );
 
     try {
-      const { limit, offset } = input;
-      const url = getAllTypesAPIBuilder(this.berryFlavorUrl, input);
+      const url = getAllTypesAPIBuilder(this.flavorUrl, input);
       const response = await axios.get(url);
       return response.data;
     } catch (e) {

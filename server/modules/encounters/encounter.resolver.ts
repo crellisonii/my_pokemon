@@ -15,9 +15,9 @@ import {
 
 @Resolver()
 export class EncounterResolver {
-  encounterMethodApi = "encounter-method";
-  encounterConditionApi = "encounter-condition";
-  encounterConditionValueApi = "encounter-condition-value";
+  private methodApi = "encounter-method";
+  private conditionApi = "encounter-condition";
+  private conditionValueApi = "encounter-condition-value";
 
   @Query(returns => EncounterMethod)
   async getEncounterMethod(
@@ -29,7 +29,7 @@ export class EncounterResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.encounterMethodApi, input);
+      const url = getTypeAPIBuilder(this.methodApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:30 ~ EncounterResolver ~ getEncounterMethod ~ url:`,
         url
@@ -54,7 +54,7 @@ export class EncounterResolver {
 
     try {
       const { limit, offset } = input;
-      const url = getAllTypesAPIBuilder(this.encounterMethodApi, input);
+      const url = getAllTypesAPIBuilder(this.methodApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:54 ~ EncounterResolver ~ getAllEncounterMethods ~ url:`,
         url
@@ -78,7 +78,7 @@ export class EncounterResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.encounterConditionApi, input);
+      const url = getTypeAPIBuilder(this.conditionApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:78 ~ EncounterResolver ~ getEncounterCondition ~ url:`,
         url
@@ -103,7 +103,7 @@ export class EncounterResolver {
 
     try {
       const { limit, offset } = input;
-      const url = getAllTypesAPIBuilder(this.encounterConditionApi, input);
+      const url = getAllTypesAPIBuilder(this.conditionApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:101 ~ EncounterResolver ~ getAllEncounterConditions ~ url:`,
         url
@@ -127,7 +127,7 @@ export class EncounterResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.encounterConditionValueApi, input);
+      const url = getTypeAPIBuilder(this.conditionValueApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:117 ~ EncounterResolver ~ getEncounterConditionValue ~ url:`,
         url
@@ -152,7 +152,7 @@ export class EncounterResolver {
 
     try {
       const { limit, offset } = input;
-      const url = getAllTypesAPIBuilder(this.encounterConditionValueApi, input);
+      const url = getAllTypesAPIBuilder(this.conditionValueApi, input);
       console.log(
         `🚀 ~ file: resolver.ts:128 ~ EncounterResolver ~ getAllEncounterConditionValues ~ url:`,
         url

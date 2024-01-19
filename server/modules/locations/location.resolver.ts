@@ -10,10 +10,10 @@ import { Location, LocationArea, PalParkArea, Region } from "./location.type";
 
 @Resolver()
 export class LocationResolver {
-  locationUrl = "location";
-  locationAreaUrl = "location-area";
-  palParkAreaUrl = "pal-park-area";
-  regionUrl = "region";
+  private locationUrl = "location";
+  private locationAreaUrl = "location-area";
+  private palParkAreaUrl = "pal-park-area";
+  private regionUrl = "region";
 
   @Query(returns => Location)
   async getLocation(@Arg("nameId") input: string): Promise<Location> {
