@@ -1,43 +1,14 @@
 import "reflect-metadata";
 
-import {
-  BerryResolver,
-  ContestResolver,
-  EncounterResolver,
-  EvolutionResolver,
-  GamesResolver,
-  ItemResolver,
-  LanguageResolver,
-  LocationResolver,
-  MachineResolver,
-  MoveResolver,
-  PokemonResolver,
-} from "./server/modules";
 import { dbUri, port } from "./env";
 
 import { ApolloServer } from "apollo-server-express";
 import { app } from "./server/app";
-import { buildSchema } from "type-graphql";
 import { connect } from "mongoose";
-const port = 4000;
+import { createSchema } from "./server/utils";
 
 async function bootstrap() {
-  const schema = await buildSchema({
-    resolvers: [
-      BerryResolver,
-      ContestResolver,
-      EncounterResolver,
-      EvolutionResolver,
-      GamesResolver,
-      ItemResolver,
-      LanguageResolver,
-      LocationResolver,
-      MachineResolver,
-      MoveResolver,
-      PokemonResolver,
-    ],
-    validate: { forbidUnknownValues: false },
-  });
+  const schema = await createSchema();
 
   const server = await new ApolloServer({
     schema,
