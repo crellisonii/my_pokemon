@@ -1,2 +1,2 @@
-export * from "./resolver";
-export * from "./types";
+export * from "./game.resolver";
+export * from "./game.types";

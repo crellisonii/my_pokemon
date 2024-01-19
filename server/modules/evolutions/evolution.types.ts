@@ -2,7 +2,34 @@ import { Field, Int, ObjectType } from "type-graphql";
 import { Name, NamedAPIResource } from "../shared";
 
 @ObjectType()
-export class EvolutionDetail {
+class ChainLink {
+  @Field(type => Boolean)
+  is_baby: boolean | null;
+
+  @Field(type => NamedAPIResource, { nullable: true })
+  species: NamedAPIResource | null;
+
+  @Field(type => [EvolutionDetail], { nullable: true })
+  evolution_details: [EvolutionDetail] | null;
+
+  @Field(type => [ChainLink], { nullable: true })
+  evolves_to: [ChainLink];
+}
+
+@ObjectType()
+export class EvolutionChain {
+  @Field(type => NamedAPIResource, { nullable: true })
+  baby_trigger_item: NamedAPIResource | null;
+
+  @Field(type => ChainLink)
+  chain: ChainLink | null;
+
+  @Field(type => Int, { nullable: true })
+  id: number | null;
+}
+
+@ObjectType()
+class EvolutionDetail {
   @Field(type => Int, { nullable: true })
   gender: number | null;
 
@@ -56,33 +83,6 @@ export class EvolutionDetail {
 
   @Field(type => Boolean)
   turn_upside_down: boolean | null;
-}
-
-@ObjectType()
-export class ChainLink {
-  @Field(type => Boolean)
-  is_baby: boolean | null;
-
-  @Field(type => NamedAPIResource, { nullable: true })
-  species: NamedAPIResource | null;
-
-  @Field(type => [EvolutionDetail], { nullable: true })
-  evolution_details: [EvolutionDetail] | null;
-
-  @Field(type => [ChainLink], { nullable: true })
-  evolves_to: [ChainLink];
-}
-
-@ObjectType()
-export class EvolutionChain {
-  @Field(type => NamedAPIResource, { nullable: true })
-  baby_trigger_item: NamedAPIResource | null;
-
-  @Field(type => ChainLink)
-  chain: ChainLink | null;
-
-  @Field(type => Int, { nullable: true })
-  id: number | null;
 }
 
 @ObjectType()

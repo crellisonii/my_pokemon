@@ -1,27 +1,37 @@
 import axios from "axios";
 import { Arg, Query, Resolver } from "type-graphql";
 import { baseUrl } from "../../constants";
-import { getApiError } from "../../helpers";
+import {
+  getAllTypesAPIBuilder,
+  getApiError,
+  getTypeAPIBuilder,
+} from "../../utils";
 import { NamedAPIResourceList, PaginationInput } from "../shared";
-import { ContestEffect, ContestType, SuperContestEffect } from "./types";
+import {
+  EncounterCondition,
+  EncounterConditionValue,
+  EncounterMethod,
+} from "./encounter.types";
 
 @Resolver()
-export class ContestResolver {
-  contestTypeUrl = "contest-type/";
-  contestEffectUrl = "contest-effect/";
-  superContestEffectUrl = "super-contest-effect/";
+export class EncounterResolver {
+  private methodApi = "encounter-method";
+  private conditionApi = "encounter-condition";
+  private conditionValueApi = "encounter-condition-value";
 
-  @Query(returns => ContestType)
-  async getContestType(@Arg("nameId") input: string): Promise<ContestType> {
+  @Query(returns => EncounterMethod)
+  async getEncounterMethod(
+    @Arg("nameId") input: string
+  ): Promise<EncounterMethod> {
     console.log(
-      `🚀 ~ file: resolver.ts:17 ~ ContestResolver ~ getContestType ~ input:`,
+      `🚀 ~ file: resolver.ts:22 ~ EncounterResolver ~ getEncounterMethod ~ input:`,
       input
     );
 
     try {
-      const url = `${baseUrl}${this.contestTypeUrl}${input}`;
+      const url = getTypeAPIBuilder(this.methodApi, input);
       console.log(
-        `🚀 ~ file: resolver.ts:24 ~ ContestResolver ~ getContestType ~ url:`,
+        `🚀 ~ file: resolver.ts:30 ~ EncounterResolver ~ getEncounterMethod ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -34,19 +44,19 @@ export class ContestResolver {
   }
 
   @Query(returns => NamedAPIResourceList)
-  async getAllContestTypes(
+  async getAllEncounterMethods(
     @Arg("pagination") input: PaginationInput
   ): Promise<NamedAPIResourceList> {
     console.log(
-      `🚀 ~ file: resolver.ts:40 ~ ContestResolver ~ getAllContestTypes ~ input:`,
+      `🚀 ~ file: resolver.ts:46 ~ EncounterResolver ~ getAllEncounterMethods ~ input:`,
       input
     );
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.contestTypeUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.methodApi, input);
       console.log(
-        `🚀 ~ file: resolver.ts:48 ~ ContestResolver ~ getAllContestTypes ~ url:`,
+        `🚀 ~ file: resolver.ts:54 ~ EncounterResolver ~ getAllEncounterMethods ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -58,17 +68,19 @@ export class ContestResolver {
     }
   }
 
-  @Query(returns => ContestEffect)
-  async getContestEffect(@Arg("id") input: string): Promise<ContestEffect> {
+  @Query(returns => EncounterCondition)
+  async getEncounterCondition(
+    @Arg("nameId") input: string
+  ): Promise<EncounterCondition> {
     console.log(
-      `🚀 ~ file: resolver.ts:63 ~ ContestResolver ~ getContestEffect ~ input:`,
+      `🚀 ~ file: resolver.ts:71 ~ EncounterResolver ~ getEncounterCondition ~ input:`,
       input
     );
 
     try {
-      const url = `${baseUrl}${this.contestEffectUrl}${input}`;
+      const url = getTypeAPIBuilder(this.conditionApi, input);
       console.log(
-        `🚀 ~ file: resolver.ts:70 ~ ContestResolver ~ getContestEffect ~ url:`,
+        `🚀 ~ file: resolver.ts:78 ~ EncounterResolver ~ getEncounterCondition ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -81,19 +93,19 @@ export class ContestResolver {
   }
 
   @Query(returns => NamedAPIResourceList)
-  async getAllContestEffects(
+  async getAllEncounterConditions(
     @Arg("pagination") input: PaginationInput
   ): Promise<NamedAPIResourceList> {
     console.log(
-      `🚀 ~ file: resolver.ts:87 ~ ContestResolver ~ getAllContestEffects ~ input:`,
+      `🚀 ~ file: resolver.ts:93 ~ EncounterResolver ~ getAllEncounterConditions ~ input:`,
       input
     );
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.contestEffectUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.conditionApi, input);
       console.log(
-        `🚀 ~ file: resolver.ts:95 ~ ContestResolver ~ getAllContestEffects ~ url:`,
+        `🚀 ~ file: resolver.ts:101 ~ EncounterResolver ~ getAllEncounterConditions ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -105,19 +117,19 @@ export class ContestResolver {
     }
   }
 
-  @Query(returns => SuperContestEffect)
-  async getSuperContestEffect(
-    @Arg("id") input: string
-  ): Promise<SuperContestEffect> {
+  @Query(returns => EncounterConditionValue)
+  async getEncounterConditionValue(
+    @Arg("nameId") input: string
+  ): Promise<EncounterConditionValue> {
     console.log(
-      `🚀 ~ file: resolver.ts:110 ~ ContestResolver ~ getSuperContestEffect ~ input:`,
+      `🚀 ~ file: resolver.ts:112 ~ EncounterResolver ~ getEncounterConditionValue ~ input:`,
       input
     );
 
     try {
-      const url = `${baseUrl}${this.superContestEffectUrl}${input}`;
+      const url = getTypeAPIBuilder(this.conditionValueApi, input);
       console.log(
-        `🚀 ~ file: resolver.ts:114 ~ ContestResolver ~ getSuperContestEffect ~ url:`,
+        `🚀 ~ file: resolver.ts:117 ~ EncounterResolver ~ getEncounterConditionValue ~ url:`,
         url
       );
       const response = await axios.get(url);
@@ -130,19 +142,19 @@ export class ContestResolver {
   }
 
   @Query(returns => NamedAPIResourceList)
-  async getAllSuperContestEffect(
+  async getAllEncounterConditionValues(
     @Arg("pagination") input: PaginationInput
   ): Promise<NamedAPIResourceList> {
     console.log(
-      `🚀 ~ file: resolver.ts:126 ~ ContestResolver ~ getAllSuperContestEffect ~ input:`,
+      `🚀 ~ file: resolver.ts:128 ~ EncounterResolver ~ getAllEncounterConditionValues ~ input:`,
       input
     );
 
     try {
       const { limit, offset } = input;
-      const url = `${baseUrl}${this.superContestEffectUrl}?limit=${limit}&offset=${offset}`;
+      const url = getAllTypesAPIBuilder(this.conditionValueApi, input);
       console.log(
-        `🚀 ~ file: resolver.ts:131 ~ ContestResolver ~ getAllSuperContestEffect ~ url:`,
+        `🚀 ~ file: resolver.ts:128 ~ EncounterResolver ~ getAllEncounterConditionValues ~ url:`,
         url
       );
       const response = await axios.get(url);

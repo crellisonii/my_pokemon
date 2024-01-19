@@ -1,4 +1,4 @@
-import { Effect, FlavorText, NamedAPIResource } from "../shared/shared-types";
+import { Effect, FlavorText, NamedAPIResource } from "../shared/shared.types";
 import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
@@ -20,7 +20,7 @@ export class ContestEffect {
 }
 
 @ObjectType()
-export class ContestName {
+class ContestName {
   @Field(type => String, { nullable: true })
   color: string | null;
 
