@@ -10,6 +10,7 @@ import {
   LocationResolver,
   MachineResolver,
   MoveResolver,
+  PokemonResolver,
 } from "./server/modules";
 
 import { ApolloServer } from "apollo-server-express";
@@ -30,6 +31,7 @@ async function bootstrap() {
       LocationResolver,
       MachineResolver,
       MoveResolver,
+      PokemonResolver,
     ],
     validate: { forbidUnknownValues: false },
   });
