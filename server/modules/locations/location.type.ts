@@ -7,16 +7,7 @@ import {
 } from "../shared";
 
 @ObjectType()
-export class EncounterVersionDetails {
-  @Field(type => Int, { nullable: true })
-  rate: number | null;
-
-  @Field(type => NamedAPIResource, { nullable: true })
-  version: NamedAPIResource | null;
-}
-
-@ObjectType()
-export class EncounterMethodRate {
+class EncounterMethodRate {
   @Field(type => NamedAPIResource, { nullable: true })
   encounter_method: NamedAPIResource | null;
 
@@ -25,12 +16,12 @@ export class EncounterMethodRate {
 }
 
 @ObjectType()
-export class PokemonEncounter {
-  @Field(type => NamedAPIResource, { nullable: true })
-  pokemon: NamedAPIResource | null;
+class EncounterVersionDetails {
+  @Field(type => Int, { nullable: true })
+  rate: number | null;
 
-  @Field(type => [VersionEncounterDetail], { nullable: true })
-  version_details: [VersionEncounterDetail] | null;
+  @Field(type => NamedAPIResource, { nullable: true })
+  version: NamedAPIResource | null;
 }
 
 @ObjectType()
@@ -79,18 +70,6 @@ export class LocationArea {
 }
 
 @ObjectType()
-export class PalParkEncounterSpecies {
-  @Field(type => Int, { nullable: true })
-  base_score: number | null;
-
-  @Field(type => Int, { nullable: true })
-  rate: number | null;
-
-  @Field(type => NamedAPIResource, { nullable: true })
-  pokemon_species: NamedAPIResource | null;
-}
-
-@ObjectType()
 export class PalParkArea {
   @Field(type => Int, { nullable: true })
   id: number | null;
@@ -103,6 +82,27 @@ export class PalParkArea {
 
   @Field(type => [PalParkEncounterSpecies], { nullable: true })
   pokemon_encounters: [PalParkEncounterSpecies] | null;
+}
+
+@ObjectType()
+class PalParkEncounterSpecies {
+  @Field(type => Int, { nullable: true })
+  base_score: number | null;
+
+  @Field(type => Int, { nullable: true })
+  rate: number | null;
+
+  @Field(type => NamedAPIResource, { nullable: true })
+  pokemon_species: NamedAPIResource | null;
+}
+
+@ObjectType()
+class PokemonEncounter {
+  @Field(type => NamedAPIResource, { nullable: true })
+  pokemon: NamedAPIResource | null;
+
+  @Field(type => [VersionEncounterDetail], { nullable: true })
+  version_details: [VersionEncounterDetail] | null;
 }
 
 @ObjectType()

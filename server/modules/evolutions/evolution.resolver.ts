@@ -11,8 +11,8 @@ import { EvolutionChain, EvolutionTrigger } from "./evolution.types";
 
 @Resolver()
 export class EvolutionResolver {
-  evolutionChainUrl = "evolution-chain";
-  evolutionTriggerUrl = "evolution-trigger";
+  private chainUrl = "evolution-chain";
+  private triggerUrl = "evolution-trigger";
 
   @Query(returns => EvolutionChain)
   async getEvolutionChain(@Arg("id") input: string): Promise<EvolutionChain> {
@@ -22,7 +22,7 @@ export class EvolutionResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.evolutionChainUrl, input);
+      const url = getTypeAPIBuilder(this.chainUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:17 ~ EvolutionResolver ~ getEvolutionChain ~ url:`,
         url
@@ -47,7 +47,7 @@ export class EvolutionResolver {
 
     try {
       const { limit, offset } = input;
-      const url = getAllTypesAPIBuilder(this.evolutionChainUrl, input);
+      const url = getAllTypesAPIBuilder(this.chainUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:37 ~ EvolutionResolver ~ getAllEvolutionChains ~ url:`,
         url
@@ -71,7 +71,7 @@ export class EvolutionResolver {
     );
 
     try {
-      const url = getTypeAPIBuilder(this.evolutionTriggerUrl, input);
+      const url = getTypeAPIBuilder(this.triggerUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:53 ~ EvolutionResolver ~ getEvolutionTrigger ~ url:`,
         url
@@ -96,7 +96,7 @@ export class EvolutionResolver {
 
     try {
       const { limit, offset } = input;
-      const url = getAllTypesAPIBuilder(this.evolutionTriggerUrl, input);
+      const url = getAllTypesAPIBuilder(this.triggerUrl, input);
       console.log(
         `🚀 ~ file: resolver.ts:70 ~ EvolutionResolver ~ getAllEvolutionTriggers ~ url:`,
         url

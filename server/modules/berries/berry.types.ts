@@ -74,7 +74,7 @@ export class BerryFlavor {
 }
 
 @ObjectType()
-export class BerryFlavorMap {
+class BerryFlavorMap {
   @Field(type => NamedAPIResource, { nullable: true })
   flavor: NamedAPIResource | null;
 
@@ -83,7 +83,7 @@ export class BerryFlavorMap {
 }
 
 @ObjectType()
-export class FlavorBerryMap {
+class FlavorBerryMap {
   @Field(type => NamedAPIResource, { nullable: true })
   berry: NamedAPIResource | null;
 

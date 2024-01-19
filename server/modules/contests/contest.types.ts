@@ -20,7 +20,7 @@ export class ContestEffect {
 }
 
 @ObjectType()
-export class ContestName {
+class ContestName {
   @Field(type => String, { nullable: true })
   color: string | null;
 

@@ -12,30 +12,6 @@ import {
 import { Field, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
-export class ItemHolderPokemonVersionDetail {
-  @Field(type => Int, { nullable: true })
-  rarity: number | null;
-
-  @Field(type => NamedAPIResource, { nullable: true })
-  version: NamedAPIResource | null;
-}
-
-@ObjectType()
-export class ItemHolderPokemon {
-  @Field(type => NamedAPIResource, { nullable: true })
-  pokemon: NamedAPIResource | null;
-
-  @Field(type => [ItemHolderPokemonVersionDetail], { nullable: true })
-  version_details: [ItemHolderPokemonVersionDetail] | null;
-}
-
-@ObjectType()
-export class ItemSprites {
-  @Field(type => String, { nullable: true })
-  default: string | null;
-}
-
-@ObjectType()
 export class Item {
   @Field(type => [NamedAPIResource], { nullable: true })
   attributes: [NamedAPIResource] | null;
@@ -135,6 +111,24 @@ export class ItemFlingEffect {
 }
 
 @ObjectType()
+class ItemHolderPokemon {
+  @Field(type => NamedAPIResource, { nullable: true })
+  pokemon: NamedAPIResource | null;
+
+  @Field(type => [ItemHolderPokemonVersionDetail], { nullable: true })
+  version_details: [ItemHolderPokemonVersionDetail] | null;
+}
+
+@ObjectType()
+class ItemHolderPokemonVersionDetail {
+  @Field(type => Int, { nullable: true })
+  rarity: number | null;
+
+  @Field(type => NamedAPIResource, { nullable: true })
+  version: NamedAPIResource | null;
+}
+
+@ObjectType()
 export class ItemPocket {
   @Field(type => [NamedAPIResource], { nullable: true })
   categories: [NamedAPIResource] | null;
@@ -147,4 +141,10 @@ export class ItemPocket {
 
   @Field(type => [Name], { nullable: true })
   names: [Name] | null;
+}
+
+@ObjectType()
+class ItemSprites {
+  @Field(type => String, { nullable: true })
+  default: string | null;
 }
