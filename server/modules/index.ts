@@ -9,3 +9,4 @@ export * from "./machines";
 export * from "./moves";
 export * from "./pokemon";
 export * from "./shared";
+export * from "./utility";
