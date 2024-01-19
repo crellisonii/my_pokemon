@@ -32,15 +32,6 @@ export class Generation {
 }
 
 @ObjectType()
-export class PokemonEntry {
-  @Field(type => Int, { nullable: true })
-  entry_number: number | null;
-
-  @Field(type => NamedAPIResource, { nullable: true })
-  pokemon_species: NamedAPIResource | null;
-}
-
-@ObjectType()
 export class Pokedex {
   @Field(type => [Description], { nullable: true })
   descriptions: [Description] | null;
@@ -65,6 +56,15 @@ export class Pokedex {
 
   @Field(type => [NamedAPIResource], { nullable: true })
   version_groups: [NamedAPIResource] | null;
+}
+
+@ObjectType()
+class PokemonEntry {
+  @Field(type => Int, { nullable: true })
+  entry_number: number | null;
+
+  @Field(type => NamedAPIResource, { nullable: true })
+  pokemon_species: NamedAPIResource | null;
 }
 
 @ObjectType()
