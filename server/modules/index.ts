@@ -7,4 +7,5 @@ export * from "./items";
 export * from "./locations";
 export * from "./machines";
 export * from "./moves";
+export * from "./pokemon";
 export * from "./shared";
