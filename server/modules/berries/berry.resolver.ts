@@ -28,7 +28,6 @@ export class BerryResolver {
         url
       );
       const response = await axios.get(url);
-      console.log(response.data);
       return response.data;
     } catch (e) {
       const error = getApiError(e);
